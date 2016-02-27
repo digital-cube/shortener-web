@@ -20,7 +20,7 @@ var startServer = function(){
 
 // Compile Sass to CSS
 gulp.task('sass', function() {
-    return gulp.src('www/sass/**/*.scss')
+    return gulp.src('www/sass/styles.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('www/assets/css'));
 });

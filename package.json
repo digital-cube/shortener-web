@@ -1,0 +1,57 @@
+{
+  "name": "Digital-Cube",
+  "repository": "digital-cube/angular-showcase",
+  "devDependencies": {
+    "babel": "^5.8.24",
+    "chai": "^1.10.0",
+    "gulp": "^3.9.0",
+    "gulp-cachebust": "0.0.6",
+    "gulp-htmlmin": "^1.2.0",
+    "gulp-less": "^3.0.2",
+    "gulp-load-plugins": "^1.0.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-uglify": "^1.4.2",
+    "gulp-watch": "^4.2.4",
+    "gulp-webserver": "^0.8.3",
+    "jspm": "^0.16.27",
+    "karma": "^0.13.15",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-jspm": "^2.0.2",
+    "karma-mocha": "^0.1.10",
+    "karma-mocha-reporter": "^0.2.2",
+    "karma-sinon": "^1.0.4",
+    "mocha": "^2.1.0",
+    "promise": "^6.0.1",
+    "sinon": "^1.12.2"
+  },
+  "scripts": {
+    "gulp": "gulp",
+    "jspm": "jspm",
+    "start": "gulp",
+    "prestart": "jspm install",
+    "test": "karma start karma.conf.js"
+  },
+  "jspm": {
+    "directories": {
+      "baseURL": "www",
+      "lib": "www/app"
+    },
+    "dependencies": {
+      "angular": "github:angular/bower-angular@^1.5.0",
+      "angular-bootstrap": "github:angular-ui/bootstrap-bower@^1.1.2",
+      "angular-messages": "github:angular/bower-angular-messages@^1.5.0",
+      "angular-mocks": "github:angular/bower-angular-mocks@^1.5.0",
+      "angular-ui-router": "github:angular-ui/ui-router@^0.2.18",
+      "bootstrap": "github:twbs/bootstrap@^3.3.6",
+      "css": "github:systemjs/plugin-css@^0.1.9",
+      "jquery": "npm:jquery@^2.2.0",
+      "text": "github:systemjs/plugin-text@^0.0.2"
+    },
+    "devDependencies": {
+      "babel": "npm:babel@^4.7.16",
+      "babel-runtime": "npm:babel-runtime@^4.7.16",
+      "core-js": "npm:core-js@^1.1.4"
+    }
+  }
+}

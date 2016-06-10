@@ -1,0 +1,86 @@
+<div class="main-div">
+    <div class="input group">
+        <div class="intro"> Share with ease</div>
+            <hr id="divider"/>
+        <div class="imgholder">
+            <img id="pic" src="http://imageshack.com/a/img921/131/pU92wv.png" height="100"  style="margin-top: -40px">
+        </div>
+    <!--<p ng-click="vm.dodaj()">ovo je novi temp: {{vm.moc_name}}</p>-->
+        <div class ="input_group" ng-if="vm.copy_input === false" ng-mousedown="vm.pd_options = true" >
+            <form name="myForm">
+            <input id= "input_url" type="text" name ='url' placeholder="Paste your URL that you want to shorten!" ng-model="vm.long_url" required ng-pattern="vm.regexurl"/>
+            <input id= "btn-sub" type="button" value="SUBMIT" ng-click="vm.get_short_url();vm.hswitch = true" ng-disabled="myForm.$invalid"/>
+                <div ng-if="myForm.url.$error.pattern" style="color:red; font-size: small ; font-family: Roboto">*Please enter correct URL.</div>
+                <div ng-if="!myForm.url.$error.pattern" style="color:red; font-size: small ; height: 15px; font-family: Roboto"></div>
+            </form>
+        </div>
+        <div class ="input_group" ng-if="vm.copy_input">
+            <input id= "input_url" type="text" placeholder="Paste your URL" ng-model="vm.long_url" ng-change="vm.cancel()" select-shorty/>
+            <input id= "btn-sub" type="button" value="COPY" ng-click="vm.cpy_to_cb()" />
+            <div class="cancel" ng-click="vm.clear()" style="font-size: xx-large ; color: grey">&#10005</div>
+            <div ng-if="!myForm.url.$error.pattern" style="color:red; font-size: small ; height: 15px; font-family: Roboto"></div>
+            </form>
+        </div>
+        <div class ="custom_alias" ng-if="vm.pd_options" >
+            <form name="myFormCa">
+            <h2>Set custom alias</h2>
+
+            <span id="prefix">http://min.bz/</span>
+            <input type="text" id="custalias" name="ca" placeholder="{{vm.placeholder}}"
+                   ng-model="vm.custom_as" ng-disabled="!vm.storrage.islogged" ng-pattern="vm.regexca">
+                <div ng-show="myFormCa.ca.$error.pattern" style="color:red; font-size: small ; height: 15px; font-family: Roboto">*Too short or contains special characters</div>
+            </form>
+        </div>
+        <div class ="expire" ng-if="vm.pd_options">
+            <h2>Set lifetime</h2>
+            <ul id="exp">
+
+            <li>
+                <input type="radio" id="f-option" name="selector" ng-model="vm.exp_days" value="1">
+                <label for="f-option">1 day</label>
+            </li>
+
+            <li>
+                <input type="radio" id="s-option" name="selector" ng-model="vm.exp_days" value="7">
+                <label for="s-option">7 days</label>
+            </li>
+            <li>
+                <input type="radio" id="t-option" name="selector" ng-model="vm.exp_days" value="30">
+                <label for="t-option">30 days</label>
+            </li>
+            <li>
+                <input type="radio" id="o-option" name="selector" ng-model="vm.exp_days" value checked>
+                <label for="o-option" style="font-size: medium">Infinite</label>
+            </li>
+
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+<div class="history" ng-if="vm.hswitch === true">
+    <table class="table-hover">
+        <thead class="colmns">
+        <th style="width: 10% ;cursor: pointer" ng-click="vm.delh()">Clear all</th>
+        <th style="width: 30%">Long URL</th>
+        <th style="width: 15%">Short URL</th>
+        <th style="width: 5%; "></th>
+        <th style="width: 10%">Expiring date</th>
+        <th style="width: 20%">Details</th>
+        </thead>
+        <!--<tr ng-repeat="i in vm.log" >-->
+        <tr ng-repeat="i in vm.ivo"  >
+            <td ng-click="vm.remove(vm.ivo, $index)" select-history style="cursor: pointer">&#10005</td>
+            <td style="text-overflow: ellipsis ; overflow: hidden;white-space: nowrap;
+    width: 25em ; display: block; text-align: left"><a href="{{i.long}}">{{i.long}}</a></td>
+            <!--<td>{{i.long}}</td>-->
+            <td style="text-align: left">{{i.short}}</td>
+            <!--<td style="text-align: left">C</td>-->
+            <td ng-click="vm.copyP(vm.ivo, $index)"><span id='pag-btn-copy'><img src="http://imagizer.imageshack.us/a/img922/7774/cijgTv.png" height="20px"></span></td>
+            <td>{{i.ndt | date:medium }}</td>
+            <td><span><img src="http://imageshack.com/a/img922/1339/wWgsl5.png" height="20px"></span></td>
+        </tr>
+    </table>
+    <input id="temp-copy" ng-model="vm._var" select-history style="top :9000px ; left: 9000px ; position: fixed">
+</div>

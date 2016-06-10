@@ -1,60 +1,39 @@
-var Promise = require('promise'),
-    gulp = require('gulp'),
-    path = require('path'),
-    sass = require('gulp-sass'),
-    $ = require('gulp-load-plugins')();
-cachebust = new $.cachebust;
+/**
+ * Created by ivo on 28.4.16..
+ */
+
+var gulp = require('gulp'),
+    webserver = require('gulp-webserver'),
+    sass = require('gulp-sass');
 
 
-var startServer = function(){
-    return new Promise(function (fulfil) {
-        gulp.src('./www')
-            .pipe($.webserver({
-                port: 9123,
-                livereload: true,
-                fallback: 'index.html'
-            }))
-            .on('end', fulfil);
-    });
-};
+gulp.task('webserver', function () {
+    gulp.src('www')
+        .pipe(webserver({
+            port: 9111,
+            livereload: {port: 35744, enable: true},
+            fallback: 'index.html'
+        }))
+});
 
-// Compile Sass to CSS
-gulp.task('sass', function() {
-    return gulp.src('www/sass/styles.scss')
+gulp.task('regwebserver', function () {
+    gulp.src('www/register')
+        .pipe(webserver({
+            port: 9110,
+            livereload: {port: 35743, enable: true},
+            fallback: 'index.html'
+        }))
+});
+
+gulp.task('sass', function () {
+    return gulp.src(['www/static/sass/*.scss'])
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('www/assets/css'));
+            .pipe(gulp.dest('www/static/css'))
 });
 
-gulp.task('default', ['sass'], function() {
-    startServer();
+gulp.task('watch', function () {
+    gulp.watch(['www/static/sass/*.scss'], ['sass']);
 });
 
-gulp.task('bust-config', function () {
-    return gulp.src('www/config.js')
-        .pipe(cachebust.resources())
-        .pipe($.uglify())
-        .pipe(gulp.dest('www'));
-});
-
-gulp.task('less', function () {
-    return gulp.src('www/less/master.less')
-        .pipe($.less({
-            paths: [ path.join(__dirname, 'less', 'includes') ]
-        }))
-        .pipe(gulp.dest('www/css'));
-});
-
-gulp.task('build-index', ['bust-config'], function () {
-    return gulp.src('www/index.html')
-        .pipe(cachebust.references())
-        .pipe($.htmlmin({
-            collapseWhitespace: true,
-            conservativeCollapse: true,
-            minifyJS: true,
-            minifyCSS: true,
-            useShortDoctype: true,
-            removeEmptyAttributes: true,
-            removeComments: true
-        }))
-        .pipe(gulp.dest('www'));
+gulp.task('default', ['sass', 'watch', 'webserver'], function () {
 });

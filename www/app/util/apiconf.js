@@ -1,0 +1,1 @@
+/** * Created by ivo on 4.5.16.. */import angular from 'angular';export default angular.module('ConfModule',[], () => {}).constant('dcConfig', {    api_url: 'localhost:8601'})//// export default (module) =>  {//     module.constant('dcConfig', {//         api_url: '192.168.1.113:8601'//     })// }

@@ -1,9 +1,15 @@
-import {mainModule} from './main';
+/**
+ * Created by ivo on 28.4.16..
+ */
 
-angular.element(document).ready(function() {
-    angular.bootstrap(document.querySelector('[data-main-app]'), [
+import angular from 'angular';
+import mainModule from './main';
+
+angular.element(document).ready(() => {
+    angular.bootstrap(document.querySelector('body'),
+    [
         mainModule.name
     ], {
         strictDi: true
-    });
+    })
 });

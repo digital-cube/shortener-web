@@ -1,0 +1,34 @@
+<div class="sgn-body">
+    <div class="logoplaceholder">
+        <img src="https://imagizer.imageshack.us/v2/741x294q90/924/yvVB2y.png" width="150">
+        <div id="wc">
+            FIRST TIME HERE?
+        </div>
+    </div>
+    <div class="sgn-form-group">
+        <div class="signu-group">
+            <ng-form name="mailform">
+            <input id= "lgn-form-username" type="text" name= 'username' placeholder="Please enter your e-mail" ng-model="vm.username" autofocus=""  ng-pattern="vm.re" required/>
+            <div id="pre"></div>
+            <div ng-show="mailform.username.$error.pattern" style="color:red; font-size: small; font-family: Roboto">*Please enter correct email address.</div>
+            </ng-form>
+        </div>
+        <!--<input id= "sgn-form-username" type="text" placeholder="Please enter your e-mail" ng-model="vm.username" />-->
+            <!--<div id="pre-u"></div>-->
+        <div class="su-group">
+
+            <input id= "lgn-form-password" type="password" placeholder="Please enter your password" ng-model="vm.password" />
+            <div id="pre"></div>
+        </div>
+            <div class="su-group">
+        <input id= "lgn-form-password" type="password" placeholder="Please repete your password" ng-model="vm.rpassword" />
+                <div id="pre"></div>
+                <div ng-show="vm.password !== vm.rpassword" style="color:red; font-size: small; font-family: Roboto">*Passwords don't match.</div>
+        </div>
+    <div class="sgn-btn" ng-click="vm.signup()" style="cursor: pointer">
+        <div class="lg-lgn">
+            <span id="sgnup-sgn" >SIGN UP</span>
+        </div>
+        <p style="font-family: 'Roboto Condensed' ; color: #00aeef;" ng-click="vm.switch.smeni_toggle=!vm.switch.smeni_toggle;vm.switch.lmeni_toggle=!vm.switch.lmeni_toggle">Log in </p>
+    </div>
+</div>

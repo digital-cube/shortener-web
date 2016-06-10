@@ -1,0 +1,43 @@
+<div class="lgn-body" ng-if="vm.lgn_switch">
+    <div class="logoplaceholder">
+        <img src="https://imagizer.imageshack.us/v2/741x294q90/924/yvVB2y.png" width="150">
+        <div id="wc">
+            WELCOME AGAIN
+        </div>
+    </div>
+    <div class="lgn-form-group">
+        <div class="lu-group">
+        <ng-form name="mailform" autocomplete="off">
+        <input id= "lgn-form-username" type="text" name ="username" placeholder="Please enter your e-mail" ng-model="vm.username" autofocus="" ng-pattern="vm.re" required autocomplete="off" />
+            <div id="pre"></div>
+            <div ng-show="mailform.username.$error.pattern" style="color:red; font-size: small; font-family: Roboto">*Please enter correct email address.</div>
+        </ng-form>
+        </div>
+        <div class="lp-group">
+
+        <input id= "lgn-form-password" type="password" placeholder="Please enter your password" ng-model="vm.password"  required/>
+            <div id="pre-p"></div>
+        <!--<input id= "sgn-form-repete" type="text" placeholder="Pleasee repete your password" ng-model="vm.long_url" />-->
+        </div>
+        <!--<form action="" style="color: #00aeef ; font-family: 'Roboto Condensed">-->
+            <!--<input id="rmb" type="checkbox" name="vehicle" value="Bike" checked>Remember password<br>-->
+        <!--</form>-->
+    </div>
+    <div class="sgn-btn" >
+        <div class="lg-lgn" ng-click="vm.lgn()" style="cursor: pointer">
+            <span id="sgnup-sgn" >LOG IN</span>
+        </div>
+        <p style="font-family: 'Roboto Condensed' ; color: #00aeef; cursor: pointer" ng-click=" vm.fgt_switch =!vm.fgt_switch; vm.lgn_switch = false">Forgot password? </p>
+    </div>
+</div>
+<div class="fgt-group" ng-if="vm.fgt_switch">
+    <div id="fgt-mes">RESET PASSWORD</div>
+    <div>
+        <span id="pre-u"></span>
+        <input id= "fgt-form-username" type="text" placeholder="Please enter your e-mail" />
+    </div>
+    <div class="fg-pass">
+        <span id="fg-pass">RESET PASSWORD</span>
+    </div>
+    <div style="font-size: medium ;font-family: Roboto; font-size: small; color: rgba(7, 8, 11, 0.76)">Already have login and password?<span style="color:#00aeef ;cursor:pointer; font-family: Roboto" ng-click="vm.switch.lmeni_toggle =false; vm.switch.smeni_toggle= !vm.switch.smeni_toggle" st> Sign in</span></div>
+</div>

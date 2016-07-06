@@ -48,7 +48,7 @@ class ShortyController {
 
     get_short_url() {
         this.short_res = this.long_url;
-        let data = { long_url : this.short_res, exp_days :this.exp_days,custom_alias: this.custom_as};
+        let data = { long_url : this.short_res, exp_days : this.exp_days, custom_alias: this.custom_as};
         let token = this.storrage.getItem('token');
         console.log(token);
         this.ac.api_get(this.ac.get_api_url('/api/create_short'), data, token)

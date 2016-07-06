@@ -14,7 +14,8 @@ System.config({
   },
 
   map: {
-    "angular": "github:angular/bower-angular@1.5.5",
+    "angular": "github:angular/bower-angular@1.5.6",
+    "angular-route": "github:angular/bower-angular-route@1.5.6",
     "angular-ui-router": "github:angular-ui/angular-ui-router-bower@0.3.1",
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
@@ -22,6 +23,9 @@ System.config({
     "css": "github:systemjs/plugin-css@0.1.21",
     "jquery": "npm:jquery@2.2.3",
     "text": "github:systemjs/plugin-text@0.0.7",
+    "github:angular/bower-angular-route@1.5.6": {
+      "angular": "github:angular/bower-angular@1.5.6"
+    },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },

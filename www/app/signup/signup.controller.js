@@ -45,12 +45,8 @@ class SignupController {
 
     signing_success(res) {
 
-        alert('Signup successfull!');
-        this.token_storrage.setItem('token', res.token);
-        this.token_storrage.setItem('username', this.username);
-        this.token_storrage.setItem('islogged', true);
-        this.logged_user.login(res);
-        this.switch.smeni_toggle = false;
+        alert('Activation mail was sent to our email!');
+        
 
     }
 

@@ -806,3 +806,39 @@ h2:hover + .message{
   cursor: pointer;
   margin-bottom: -1px;
 }
+
+.activate{
+  height:250px;
+  width:585px;
+  background: rgba(255,255,255,0.5);
+  //margin: 100px auto;
+  //margin-top: 150px;
+  //margin-left: 600px;
+  border-radius: 5px;
+  //border: 1px solid red;
+  position: absolute;
+  left:35%;
+  top: 25%;
+}
+
+.rg-rg2 {
+  background-color: #00aeef;
+  color: white;
+  font-family: Roboto;
+  padding: 12px;
+  width: 130px;
+  border-radius: 1px;
+  margin-top: 20px;
+  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.rg-rg2:hover{
+  background-color: #09c7ef;
+}

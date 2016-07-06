@@ -13,7 +13,7 @@ class ShortyController {
         this.long_url = '';
         this.org_long ='';
         this.short_res = '';
-        this.exp_days = '';
+        this.exp_days = '0';
         this.custom_as = '';
         this.pd_options = false;
         this.hswitch = false;
@@ -67,7 +67,7 @@ class ShortyController {
         });
         let _date = new Date();
         _date.setDate(_date.getDate() + +this.exp_days);
-        if(this.exp_days === ""){
+        if(this.exp_days === '0'){
             _date = "Never"
         }
         let _histor = {long : this.org_long, short : this.short_res, exp: this.exp_days, ndt : _date};

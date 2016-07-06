@@ -23,6 +23,9 @@ System.config({
     "css": "github:systemjs/plugin-css@0.1.21",
     "jquery": "npm:jquery@2.2.3",
     "text": "github:systemjs/plugin-text@0.0.7",
+    "github:angular-ui/angular-ui-router-bower@0.3.1": {
+      "angular": "github:angular/bower-angular@1.5.6"
+    },
     "github:angular/bower-angular-route@1.5.6": {
       "angular": "github:angular/bower-angular@1.5.6"
     },

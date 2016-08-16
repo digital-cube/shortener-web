@@ -1,145 +1,122 @@
-/**
- * Created by ivo on 28.4.16..
- */
-let DI = ['dcApiCalls', '$interval','$element', '$timeout','dcLoggedUser','$document'];
+
+let DI = ['dcApiCalls', '$interval', '$element','$document'];
 
 import $ from 'jquery';
 
 class ShortyController {
-    constructor(dcApiCalls, $interval, $element, $timeout, dcLoggedUser, $document) {
-        this.$timeout = $timeout;
-        // console.log('OVO JE CONTROLER za shorty');
-        this.$element = $element;
-        this.long_url = '';
-        this.org_long ='';
-        this.short_res = '';
+    constructor(dcApiCalls, $interval, $element, $document) {
+
+        this.longUrl='';
+        this.long='';
+        this.rez='';
+        this.shortUrl='';
         this.exp_days = '0';
-        this.custom_as = '';
-        this.pd_options = false;
-        this.hswitch = false;
-        this.histor = [];
-        this.$document = $document;
+        this.hstory=[];
+        this.his=[];
+        this.sub=false;
+        this.copy=false;
+        this.hswitch=false;
+        this.options=true;
         this.ac = dcApiCalls;
-        this.copy_input = false;
+        this.element= $element;
+        this.document= $document;
+
         this.storrage = localStorage;
-        this.logged_user = dcLoggedUser;
-        this.ivo = [];
-        this.placeholder = '*for registered users only';
-        // this.regex = '[a-zA-Z0-9_][^\s]{5,}';
-        this.regexurl ='^(?!mailto:)(?:(?:http|https|ftp)://)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-?)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$';
-        this.regexca = '[a-zA-Z0-9_\S]{5,15}';
+        this.regexlu='/^(http|https|ftp):\/\/)?(?:((?:[^\W\s]|\.|-|[:]{1})+)@{1})?((?:www.)?(?:[^\W\s]|\.|-)+[\.][^\W\s]{2,4}|localhost(?=\/)|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?::(\d*))?([\/]?[^\s\?]*[\/]{1})*(?:\/?([^\s\n\?\[\]\{\}\#]*(?:(?=\.)){1}|[^\s\n\?\[\]\{\}\.\#]*)?([\.]{1}[^\s\?\#]*)?)?(?:\?{1}([^\s\n\#\[\]]*))?([\#][^\s\n]*)?\)^/';
+        
 
-        let logged = this.storrage.getItem('islogged');
-        if(logged){
-            this.placeholder = '*optional';
-            // $('#custalias').attr('placeholder','*optional');
-        }
-
-        $('#pic').hide();
-        let log = this.storrage.getItem('history');
-        if(log){
-            this.ivo = JSON.parse(log);
+        let hs = this.storrage.getItem('history');
+        if(hs){
+            this.hstory = JSON.parse(hs);
             this.hswitch = true;
         }
-        if(this.ivo === null || this.ivo === [] || this.ivo === undefined){
-            this.hswitch = !this.hswitch;
-        }
-    }
-
-    get_short_url() {
-        this.short_res = this.long_url;
-        let data = { long_url : this.short_res, exp_days : this.exp_days, custom_alias: this.custom_as};
-        let token = this.storrage.getItem('token');
-        console.log(token);
-        this.ac.api_get(this.ac.get_api_url('/api/create_short'), data, token)
-            .then((r) => {this.shorting_success(r)})
-            .catch((r) => this.shorting_error(r));
-    }
-
-    shorting_success(res) {
-
-        this.org_long = this.long_url;
-        this.long_url = this.short_res = `http://min.bz/${res.short_url}`;
-        $('#pic').fadeIn();
-        this.copy_input = true;
-        this.$timeout(()=>{
-            this.$element.find('input')[0].focus();
-        });
-        let _date = new Date();
-        _date.setDate(_date.getDate() + +this.exp_days);
-        if(this.exp_days === '0'){
-            _date = "Never"
-        }
-        let _histor = {long : this.org_long, short : this.short_res, exp: this.exp_days, ndt : _date};
-
-        if(this.ivo !== null) {
-            this.ivo.unshift(_histor);
-
-            this.storrage.setItem('history', angular.toJson(this.ivo));
-            console.log(this.histor);
-            this.ivo = JSON.parse(this.storrage.history);
+        if(this.hstory === null || this.hstory === [] || this.hstory === undefined){
+        this.hswitch = !this.hswitch;
         }
 
     }
 
-    shorting_error(res){
-        alert(`Error: ${res.message}`);
-        this.hswitch = false;
+    get_short(){
+        this.shortUrl = this.longUrl;
+        let data = { long_url : this.shortUrl, exp_days: this.exp_days};
+      
+        this.ac.api_get(this.ac.get_api_url('/api/create_short'), data)
+            .then((r) => {this.short_success(r)})
+            .catch((r) => this.short_error(r));
 
-    }
-
-    cpy_to_cb() {
-        $("#input_url").focus();
-        document.execCommand('copy');
         
-        this.copy_input = false;
-        this.long_url = null;
-        $('#pic').hide();
     }
 
-    cancel(){
-        if (this.copy_input) {
-            this.copy_input = false;
-            $('#pic').hide();
+    short_success(res){
+        
+        this.long = this.longUrl;
+        this.rez = `http://min.bz/${res.short_url}`;
+        this.longUrl = this.rez;
+        this.copy = true;
+
+        
+        let _date = new Date();
+            _date.setDate(_date.getDate() + +this.exp_days);
+        if(this.exp_days === '0'){
+        _date = "Never"
         }
+    let his = {Long: this.long, Short: this.rez, datum: _date};
+
+    if(this.hstory !== null) {
+        this.hstory.unshift(his);
+
+        this.storrage.setItem('history', angular.toJson(this.hstory));
+        console.log(this.his);
+        this.hstory = JSON.parse(this.storrage.history);
     }
-    
-    clear(){
-            this.long_url = null;
-        $('#pic').hide();
-        this.copy_input = false;
+        
+        
     }
-    
-    delh(){
-        this.storrage.clear();
-        this.ivo =[];
-        this.hswitch = false;
-        this.long_url = null;
-        $('#pic').hide();
-        this.copy_input = false;
-        this.pd_options = false;
+
+    short_error(res){
+        alert(`Error: ${res.message}`);
+        this.hswitch = true;
 
     }
 
-    remove(array, index){
-        array.splice(index, 1);
+    copy_btn(){
+
+        $('#enter_url').focus();
+        document.execCommand('copy');
+
+
+    }
+    
+    cancel_btn(){
+        this.longUrl = null;
+        this.copy = false;
+        
+    }
+
+    delete(){
+       this.storrage.clear();
+        this.hstory=[];
+        this.hswitch=false;
+        this.longUrl=null;
+        this.copy=false;
+        this.exp_days="0";
+        
+        
+    }
+    
+    delete_one(array, index){
+        array.splice(index,1);
         this.storrage.clear();
         this.storrage.setItem('history', angular.toJson(array));
-        if(array.length === 0) {
+        if(array.length === 0){
             this.storrage.clear();
-            this.hswitch = false;
+            this.hswitch=false;
+            this.copy=false;
+            this.longUrl=null;
+            this.exp_days="0";
         }
     }
-    copyP(array, index){
-        
-        this._var =array[index].short;
-        this.$timeout(()=>{
-            $('#temp-copy').focus();
-            document.execCommand('copy');
-        });
-    }
 }
-
 
 ShortyController.$inject = DI;
 

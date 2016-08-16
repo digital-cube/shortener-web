@@ -6,7 +6,7 @@ import template from './shorty.html!text';
 import ctrl from './shorty.controller';
 
 export default (module) => {
-    module.directive('demoShorty', () => {
+    module.directive('shorty', () => {
         return {
             restrict: 'E',
             template: template,

@@ -1,86 +1,116 @@
-<div class="main-div">
-    <div class="input group">
-        <div class="intro"> Share with ease</div>
-            <hr id="divider"/>
-        <div class="imgholder">
-            <img id="pic" src="http://imageshack.com/a/img921/131/pU92wv.png" height="100"  style="margin-top: -40px">
-        </div>
-    <!--<p ng-click="vm.dodaj()">ovo je novi temp: {{vm.moc_name}}</p>-->
-        <div class ="input_group" ng-if="vm.copy_input === false" ng-mousedown="vm.pd_options = true" >
-            <form name="myForm">
-            <input id= "input_url" type="text" name ='url' placeholder="Paste your URL that you want to shorten!" ng-model="vm.long_url" required ng-pattern="vm.regexurl"/>
-            <input id= "btn-sub" type="button" value="SUBMIT" ng-click="vm.get_short_url();vm.hswitch = true" ng-disabled="myForm.$invalid"/>
-                <div ng-if="myForm.url.$error.pattern" style="color:red; font-size: small ; font-family: Roboto">*Please enter correct URL.</div>
-                <div ng-if="!myForm.url.$error.pattern" style="color:red; font-size: small ; height: 15px; font-family: Roboto"></div>
-            </form>
-        </div>
-        <div class ="input_group" ng-if="vm.copy_input">
-            <input id= "input_url" type="text" placeholder="Paste your URL" ng-model="vm.long_url" ng-change="vm.cancel()" select-shorty/>
-            <input id= "btn-sub" type="button" value="COPY" ng-click="vm.cpy_to_cb()" />
-            <div class="cancel" ng-click="vm.clear()" style="font-size: xx-large ; color: grey">&#10005</div>
-            <div ng-if="!myForm.url.$error.pattern" style="color:red; font-size: small ; height: 15px; font-family: Roboto"></div>
-            </form>
-        </div>
-        <div class ="custom_alias" ng-if="vm.pd_options" >
-            <form name="myFormCa">
-            <h2>Set custom alias</h2>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2 " style=" padding-left: 35px; padding-right: 35px;">
+                <div class="intro-message animate-enter">
+                    <h1>Share with ease</h1>
 
-            <span id="prefix">http://min.bz/</span>
-            <input type="text" id="custalias" name="ca" placeholder="{{vm.placeholder}}"
-                   ng-model="vm.custom_as" ng-disabled="!vm.storrage.islogged" ng-pattern="vm.regexca">
-                <div ng-show="myFormCa.ca.$error.pattern" style="color:red; font-size: small ; height: 15px; font-family: Roboto">*Too short or contains special characters</div>
-            </form>
+                    <hr class="intro-divider">
+                    <div class="enter_urlg">
+                        <form name="form_url">
+                            <div class="input-group enter_url" ng-if="vm.copy===false">
+
+                                <input type="text" name="url" id="enter_url"  placeholder="Enter your URL" ng-model="vm.longUrl" ng-pattern="vm.regexlu" select-shorty/>
+                                <input type="submit" id="btn_sub" value="Submit" ng-click="vm.get_short(); vm.hswitch = true" />
+
+
+                            </div>
+                        </form>
+
+                    </div>
+
+
+
+                            <div class="input-group enter_url" ng-if="vm.copy">
+                                <input type="text" id="enter_url"  placeholder="Enter your URL" ng-model="vm.longUrl"  select-shorty/>
+                                <input type="submit" id="btn-cpy" value="Copy" ng-click="vm.copy_btn(); vm.hswitch = true" />
+                            <div id="close_url" ng-click="vm.cancel_btn()" style="font-size: 15px ; color: grey">&#10005</div>
+                            </div>
+
+
+                    </div>
+
+
+                <div class="row row-papa" style="margin-left: 0px; margin-right: 0px;">
+
+                            <div class="exp_d"  ng-if="vm.options" >
+                                        <div class="hidden-xs hidden-sm  col-md-12  col-lg-5">
+                                            <h4 style="color: #00aeef;">Expiring days <img src="arrow.png" width="20px"; height="20px"> </h4>
+                                        </div>
+                                            <div class="col-xs-12 col-sm-12 hidden-md hidden-lg ">
+                                                <h4><span style="color: #00aeef;">Expiring days </span></h4>
+                                                <img src="downarrow.png" width="20px"; height="20px">
+                                            </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12  col-lg-7">
+                                            <div class="radio"  style="font-size: 16px; font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;">
+                                                <label><input type="radio"  value="1" name="optradio" ng-model="vm.exp_days">  1 day </label>
+                                                <label><input type="radio" value="7" name="optradio" ng-model="vm.exp_days" >  7 days </label>
+                                                <label><input type="radio"  value="30" name="optradio" ng-model="vm.exp_days">  30 days </label>
+                                                <label><input type="radio"  value="0"  name="optradio" ng-model="vm.exp_days" checked> Never </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                <!--<div class="cust" ng-if="vm.options" >-->
+
+                                    <!--<div class="hidden-xs hidden-sm col-md-12 col-lg-5">-->
+                                        <!--<h4 style="color: #00aeef">Custom alias <img src="arrow.png" width="20px"; height="20px"></h4>-->
+                                        <!--</div>-->
+
+                                    <!--<div class="col-xs-12 col-sm-12 hidden-md hidden-lg">-->
+                                        <!--<h4 style="color: #00aeef"><span>Custom alias</span></h4>-->
+                                        <!--<img src="downarrow.png" width="20px"; height="20px">-->
+                                    <!--</div>-->
+
+
+                                        <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-7" style="padding-top: 2px">-->
+                                            <!--<div class="input-group" style="color: #2d2d2d;">-->
+
+                                                <!--<span class="input-group-addon" id="basic-addon3"><em>https://min.bz</em></span>-->
+                                                <!--<input type="text" class="form-control" id="basic-url" ng-model="vm.custom_ali"  placeholder="" maxlength="7">-->
+
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
-        <div class ="expire" ng-if="vm.pd_options">
-            <h2>Set lifetime</h2>
-            <ul id="exp">
-
-            <li>
-                <input type="radio" id="f-option" name="selector" ng-model="vm.exp_days" value="1">
-                <label for="f-option">1 day</label>
-            </li>
-
-            <li>
-                <input type="radio" id="s-option" name="selector" ng-model="vm.exp_days" value="7">
-                <label for="s-option">7 days</label>
-            </li>
-            <li>
-                <input type="radio" id="t-option" name="selector" ng-model="vm.exp_days" value="30">
-                <label for="t-option">30 days</label>
-            </li>
-            <li>
-                <input type="radio" id="o-option" name="selector" ng-model="vm.exp_days" value="0" checked >
-                <label for="o-option" style="font-size: medium">Infinite</label>
-            </li>
-
-            </ul>
-        </div>
-
     </div>
 
-</div>
-<div class="history" ng-if="vm.hswitch === true">
-    <table class="table-hover">
-        <thead class="colmns">
-        <th style="width: 10% ;cursor: pointer" ng-click="vm.delh()">Clear all</th>
-        <th style="width: 30%">Long URL</th>
-        <th style="width: 15%">Short URL</th>
-        <th style="width: 5%; "></th>
-        <th style="width: 10%">Expiring date</th>
-        <th style="width: 20%">Details</th>
-        </thead>
-        <!--<tr ng-repeat="i in vm.log" >-->
-        <tr ng-repeat="i in vm.ivo"  >
-            <td ng-click="vm.remove(vm.ivo, $index)" select-history style="cursor: pointer">&#10005</td>
-            <td style="text-overflow: ellipsis ; overflow: hidden;white-space: nowrap;
-    width: 25em ; display: block; text-align: left"><a href="{{i.long}}">{{i.long}}</a></td>
-            <!--<td>{{i.long}}</td>-->
-            <td style="text-align: left">{{i.short}}</td>
-            <!--<td style="text-align: left">C</td>-->
-            <td ng-click="vm.copyP(vm.ivo, $index)"><span id='pag-btn-copy'><img src="http://imagizer.imageshack.us/a/img922/7774/cijgTv.png" height="20px"></span></td>
-            <td>{{i.ndt | date:medium }}</td>
-            <td><span><img src="http://imageshack.com/a/img922/1339/wWgsl5.png" height="20px"></span></td>
-        </tr>
-    </table>
-    <input id="temp-copy" ng-model="vm._var" select-history style="top :9000px ; left: 9000px ; position: fixed">
-</div>
+
+    <div class="container">
+        <div class="row" style="padding: 40px;">
+            <!--<div class="col-xs-12 col-sm-12 col-md-7 col-md-offset-2 col-lg-8 col-lg-offset-1 ">-->
+                <div class="table-responsive table-history"  ng-if="vm.hswitch === true">
+
+                    <table class="table table-responsive" id="history">
+                        <thead class="colmns">
+                        <tr>
+                            <th class="td-width" style="word-wrap: break-word;">Long URL </th>
+                            <th class="td-width">Short URL</th>
+                            <th class="td-width">Expiring date</th>
+                            <th class="td-width" ng-click="vm.delete()">Delete All</th>
+                        </tr>
+                        </thead>
+                        <tbody id="preview">
+                        <tr ng-repeat="i in vm.hstory">
+                            <td> {{i.Long}} </td>
+                            <td> {{i.Short}}</td>
+                            <td>{{i.datum | date}}</td>
+                            <td ng-click="vm.delete_one(vm.hstory, $index)" select-history >&#10005</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -17,9 +17,8 @@ class SignupController {
         this.smeni_toggle = false;
         this.username = '';
         this.password = '';
-        this.rpassword = '';
-        this.switch = dcOverlaySwitch;
         this.token_storrage = localStorage;
+        this.switch = dcOverlaySwitch;
         this.logged_user = dcLoggedUser;
         this.re = '(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)';
 
@@ -31,23 +30,23 @@ class SignupController {
             return
         }
         let data = {};
-        if(this.password === this.rpassword){
+        if(this.password === this.password){
             data = { username: this.username , password : this.password};
         }
         else {
             alert('Passwords do not match');
             return
         }
-        this.ac.api_post(this.ac.get_api_url('/api/register_firststep'), data)
+        this.ac.api_post(this.ac.get_api_url('/user/register'), data)
             .then((r) => {this.signing_success(r)})
             .catch((r) => this.signing_error(r));
     }
 
     signing_success(res) {
 
-        alert('Activation mail was sent to our email!');
+        alert('Activation mail was sent to your email!');
+        this.switch.smeni_toggle= false;
         
-
     }
 
     signing_error(res){

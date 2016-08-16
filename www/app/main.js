@@ -6,6 +6,7 @@ import angular from 'angular';
 import 'angular-ui-router';
 import 'angular-route';
 import registerShortyDirective from './shorty/shorty.directive';
+import registerFooterDirective from './footer/footer.directive';
 import registerHeaderDirective from './header/header.directive';
 import registerSignupDirective from './signup/signup.directive';
 import registerLoginDirective from './login/login.directive';
@@ -32,6 +33,7 @@ let mainModule = angular.module('main', [
 
 registerShortyDirective(mainModule);
 registerHeaderDirective(mainModule);
+registerFooterDirective(mainModule);
 registerSignupDirective(mainModule);
 registerLoginDirective(mainModule);
 registerApiService(mainModule);

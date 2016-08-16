@@ -11,14 +11,16 @@ class LoggedUser {
         
         this.ac = dcApiCalls;
         this.storrage = localStorage;
+
         
     }
 
     login(user_data) {
 
         this.islogged = true;
-
         this.set_token(user_data['token']);
+        
+
 
     }
 
@@ -32,7 +34,7 @@ class LoggedUser {
 
     logout(){
         this.clear_logged_user();
-        $('#custalias').attr('placeholder','*for registered users only');
+        // $('#custalias').attr('placeholder','*for registered users only');
     }
 
     clear_logged_user(){
@@ -40,7 +42,9 @@ class LoggedUser {
         this.storrage.removeItem('islogged');
         this.storrage.removeItem('username');
         this.username = null;
+
         this.clear_token();
+
 
     }
 
@@ -55,6 +59,7 @@ class LoggedUser {
         alert('Logout successfull');
         this.islogged = false;
         $('#custalias').val('');
+
 
     }
 

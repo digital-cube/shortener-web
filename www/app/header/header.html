@@ -1,48 +1,58 @@
 <div class="header">
-    <!--<p ng-click="vm.dodaj()">ovo je novi temp: {{vm.moc_name}}</p>-->
-    <div class="login-group" ng-if="vm.logged_user.storrage.islogged === undefined">
-        <div class="login">
-            <img src="http://imagizer.imageshack.us/a/img924/4056/JVbmZb.png" width="18" style="padding-top: 8px">
-            <span id="lgin" ng-click="vm.switch.lmeni_toggle = !vm.switch.lmeni_toggle">LOG IN</span>
-        </div>
-        <div class="sign-up" >
-            <img src="http://imagizer.imageshack.us/a/img922/9650/9GNgTJ.png" width="9" style=" padding-top: 9px">
-            <span id="sgnup" ng-click="vm.switch.smeni_toggle = !vm.switch.smeni_toggle">SIGN UP </span>
-        </div>
-        <div class="log-google">
-            <img src="http://imagizer.imageshack.us/a/img924/193/vswR8m.png" width="18" style=" padding-top: 8px">
-            <span id="lggogl" >ENGLISH▼</span>
-        </div>
-    </div >
-    <div class="logout-group" ng-click="vm.logged_user.logout()" ng-if="vm.logged_user.storrage.islogged" style="cursor: pointer">
-        <div class="logout" >
-            <div class="lgo-btn">
-                <img src="http://imageshack.com/a/img924/239/e6hfau.png" width="18px" style="float: right; margin-top: -2px" >
-                <div id= "lgo" ng-click="vm.logged_user.logout_base();vm.logged_user.logout()">LOGOUT </div>
+    <nav class="nav" style="margin-bottom: 0; background: rgba(255,255,255,0.3); border: none; padding:10px; width: 100%; ">
+        <div class="container">
+            <div class="navbar-header">
+
+                <div>
+                   <img src="https://imagizer.imageshack.us/v2/741x294q90/924/yvVB2y.png" width="150px">
+                </div>
             </div>
-            <img src="http://imagizer.imageshack.us/a/img923/8194/LSGxUT.png" width="30px" style="float: right; padding-right: 15px">
-            <div id ="logout" >Welcome, {{vm.logged_user.storrage.username}}</div>
 
-        </div>
+            <div class="navbar-right">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="social_btn">
+                        <ul class="social-network social-circle">
+                            <li><a href="https://www.facebook.com/digitalcube.rs/" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/digital-cube-d-o-o-?trk=prof-following-company-logo" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-    </div>
-    <div class="logo">
-    <img src="https://imagizer.imageshack.us/v2/741x294q90/924/yvVB2y.png" width="100">
-        <div style="float: right; padding-top: 11px;">
-        <span style="font-family: 'Roboto';font-size: small; margin-left: -2px">URL shortener</span>
-        </div>
-    </div>
+                <!--<div class="navbar-right">-->
+                    <!--<div class="navbar-right">-->
+                        <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
+                            <!--<div class="log-sgn-group"  ng-if="vm.logged_user.storrage.islogged === undefined">-->
+                                <!--<button class="btn btn-lg" id="login-btn" role="button" ng-click="vm.switch.lmeni_toggle = !vm.switch.lmeni_toggle" >Login</button>-->
+                                <!--<a href="#" class="btn btn-lg" id="signup-btn" role="button" ng-click="vm.switch.smeni_toggle = !vm.switch.smeni_toggle" >Signup</a>-->
+                            <!--</div>-->
+                            <!--<div class="logout-group" style="padding-top: 12px;" ng-click="vm.logged_user.logout()" ng-if="vm.logged_user.storrage.islogged" >-->
+                                <!--<a href="#"><img src="user-icon.png" width="25px">-->
+                                    <!--<span id="user-logined" style="font-size: 18px;"> Hi, {{vm.logged_user.storrage.username}}</span>-->
+                                    <!--<a href="#" class="btn btn-md" style="font-size: 18px;" role="button" ng-click="vm.logged_user.logout_base(); vm.logged_user.logout()"><img src="logout.png" width="25px" height="25px">Logout</a>-->
+                                <!--</a>-->
+                            <!--</div>-->
 
-</div>
-<signup ng-if="vm.switch.smeni_toggle"></signup>
-<login ng-if="vm.switch.lmeni_toggle"></login>
-<div class="overlay" ng-if="vm.switch.smeni_toggle "ng-click="vm.switch.smeni_toggle = !vm.switch.smeni_toggle" style=" -webkit-transition: fadein 1s;
-    -moz-transition: fadein 1s;
-    -o-transition: fadein 1s;
-    -webkit-animation: fadein 1s;
-    -o-animation: fadein 1s"></div>
-<div class="overlay" ng-if="vm.switch.lmeni_toggle "ng-click="vm.switch.lmeni_toggle = !vm.switch.lmeni_toggle" style=" -webkit-transition: fadein 1s;
-    -moz-transition: fadein 1s;
-    -o-transition: fadein 1s;
-    -webkit-animation: fadein 1s;
-    -o-animation: fadein 1s"></div>
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+        <!--</div>-->
+    <!--</nav>-->
+<!--</div>-->
+
+<!--<signup ng-if="vm.switch.smeni_toggle"></signup>-->
+<!--<login ng-if="vm.switch.lmeni_toggle"></login>-->
+<!--<div class="overlay" ng-if="vm.switch.smeni_toggle "ng-click="vm.switch.smeni_toggle = !vm.switch.smeni_toggle" style=" -webkit-transition: fadein 1s;-->
+     <!-- -moz-transition: fadein 1s;-->
+     <!-- -o-transition: fadein 1s;-->
+     <!-- -webkit-animation: fadein 1s;-->
+     <!-- -o-animation: fadein 1s; position: fixed;-->
+  <!--width: 100%; height: 100%; top: 0px; left: 0px; background-color: #0a0a0a; opacity: 0.5; z-index: 2;"></div>-->
+<!--<div class="overlay" ng-if="vm.switch.lmeni_toggle "ng-click="vm.switch.lmeni_toggle = !vm.switch.lmeni_toggle" style=" -webkit-transition: fadein 1s;-->
+     <!-- -moz-transition: fadein 1s;-->
+     <!-- -o-transition: fadein 1s;-->
+     <!-- -webkit-animation: fadein 1s;-->
+     <!-- -o-animation: fadein 1s; position: fixed;-->
+  <!--width: 100%; height: 100%; top: 0px; left: 0px; background-color: #0a0a0a; opacity: 0.5; z-index: 2;"></div>-->

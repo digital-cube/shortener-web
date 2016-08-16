@@ -1,12 +1,9 @@
-/**
- * Created by ivo on 13.5.16..
- */ 
 
-import template from './header.html!text';
-import ctrl from './header.controller';
+import template from './footer.html!text';
+import ctrl from './footer.controller';
 
 export default (module) => {
-    module.directive('header', () => {
+    module.directive('footer', () => {
         return {
             restrict: 'E',
             template: template,
